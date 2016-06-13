@@ -1,1 +1,21 @@
-<h1>{{tabController.name}}</h1> 
+<div>
+     <user-input></user-input>
+     
+     <div>
+         <div ng-show="tabController.user">
+         <div class="list-group">
+             <a href="" class="list-group-item" ng-click="tabController.selectedTab='user'"> {{tabController.user}} To Do</a>
+             <a href="" class="list-group-item" ng-click="tabController.selectedTab='all'"> All</a>
+         </div>
+     </div>
+         
+             <div ng-switch='tabController.selectedTab'>
+                 <div ng-switch-when='user'>
+                     <user-to-do></user-to-do>
+                 </div>
+                 <div ng-switch-when='all'>
+                     <all-to-do></all-to-do>>
+                 </div>
+             </div>
+         </div>
+ </div>

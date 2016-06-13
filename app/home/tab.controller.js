@@ -1,5 +1,5 @@
 export default class TabController{
-    constructor(){
-        this.name = "TabController";
+    constructor($stateParams){
+         this.user = $stateParams.user;
     }
 } 
