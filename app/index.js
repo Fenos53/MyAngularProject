@@ -4,6 +4,7 @@ import routing from './config';
 import uirouter from 'angular-ui-router';
 import home from './home'; 
 
+
 const ngModule = angular.module('app',[
     uirouter,
     home

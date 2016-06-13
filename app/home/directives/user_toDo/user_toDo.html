@@ -1,28 +1,29 @@
 <section class="row">
-     <header>
-         <form id="todo-form" ng-submit="tabController.addTodo()">
-         	<input id="new-todo" class="form-control text-center"  placeholder="What needs to be done?" ng-model="tabController.userText" ng-disabled="saving" />
-         </form>    
-     </header>    
+    <header>
+        <form id="todo-form" ng-submit="tabController.addTodo()">
+        <input id="new-todo" class="form-control text-center"  placeholder="What needs to be done?" ng-model="tabController.userText" ng-disabled="saving" />
+    </form>    
+    </header>    
      
-     <section>
-         <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
-              <li ng-repeat="todo in tabController.todos | filter:tabController.statusFilter">
-     								<input data-toggle="toggle" ng-show="todo.value.user == tabController.user" type="checkbox" ng-model="todo.value.completed" ng-change="toggleCompleted(todo)">
-     								<span ng-hide="todo.editing" ng-dblclick="tabController.editTodo(todo)">{{todo.value.title}}</span>
+    <section>
+        <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+            <li ng-repeat="todo in tabController.todos">
+     								<input data-toggle="toggle" ng-show="todo.user == tabController.user" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
+     								<span ng-hide="todo == tabController.editingToDo" ng-dblclick="tabController.editTodo(todo)">{{todo.title}}</span>
      								<form ng-submit="tabController.doneEditing(todo)">
-     							    	<input ng-show="todo.editing" ng-model="todo.value.title" ng-blur="tabController.doneEditing(todo)" autofocus />
+     							    <input ng-show="todo == tabController.editingToDo" ng-model="todo.title" ng-blur="tabController.doneEditing(todo)" autofocus />
      							    </form>
-     								<button class="destroy" ng-show="todo.value.user == tabController.user" ng-click="tabController.removeTodo(todo)">Destroy</button>
+     							    <span>{{todo.value.user}}</span>
+     								<button class="destroy" ng-show="todo.user == tabController.user" ng-click="tabController.removeTodo(todo)">Destroy</button>
      						</li>
      		</ul>
-     </section>
+    </section>
      
- </section>
- <footer>
-     <ul id="filters">
+</section>
+<footer>
+    <ul id="filters">
  						<li>
- 							<a ng-click="tabController.onChangeStatus('')">All</a>
+ 						    <a ng-click="tabController.onChangeStatus('')">All</a>
  						</li>
  						<li>
  							<a ng-click="tabController.onChangeStatus('active')">Active</a>
@@ -31,4 +32,4 @@
  							<a ng-click="tabController.onChangeStatus('completed')">Completed</a>
  						</li>
  					</ul>
- </footer>
+</footer>
