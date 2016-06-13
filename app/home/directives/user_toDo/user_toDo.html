@@ -1,0 +1,20 @@
+<section class="row">
+     <header>
+         <form id="todo-form" ng-submit="tabController.addTodo()">
+         	<input id="new-todo" class="form-control text-center"  placeholder="What needs to be done?" ng-model="tabController.userText" ng-disabled="saving" />
+         </form>    
+     </header>    
+     
+     <section>
+         <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+             <ul id="todo-list" class="list-group">
+     						<li ng-repeat="todo in tabController.todos" class="list-group-item">
+     								<input data-toggle="toggle" type="checkbox" ng-model="todo.value.completed" ng-change="toggleCompleted(todo)">
+     								<span ng-hide="todo.editing" ng-dblclick="tabController.editTodo(todo)">{{todo.value.title}}</span>
+     								<input ng-show="todo.editing" ng-model="todo.value.title" ng-blur="tabController.doneEditing(todo)" autofocus />
+     								<button class="destroy" ng-click="tabController.removeTodo(todo)"></button>
+     						</li>
+     		</ul>
+     </section>
+     
+ </section>
