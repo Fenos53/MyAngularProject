@@ -7,14 +7,28 @@
      
      <section>
          <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
-             <ul id="todo-list" class="list-group">
-     						<li ng-repeat="todo in tabController.todos" class="list-group-item">
-     								<input data-toggle="toggle" type="checkbox" ng-model="todo.value.completed" ng-change="toggleCompleted(todo)">
+              <li ng-repeat="todo in tabController.todos | filter:tabController.statusFilter">
+     								<input data-toggle="toggle" ng-show="todo.value.user == tabController.user" type="checkbox" ng-model="todo.value.completed" ng-change="toggleCompleted(todo)">
      								<span ng-hide="todo.editing" ng-dblclick="tabController.editTodo(todo)">{{todo.value.title}}</span>
-     								<input ng-show="todo.editing" ng-model="todo.value.title" ng-blur="tabController.doneEditing(todo)" autofocus />
-     								<button class="destroy" ng-click="tabController.removeTodo(todo)"></button>
+     								<form ng-submit="tabController.doneEditing(todo)">
+     							    	<input ng-show="todo.editing" ng-model="todo.value.title" ng-blur="tabController.doneEditing(todo)" autofocus />
+     							    </form>
+     								<button class="destroy" ng-show="todo.value.user == tabController.user" ng-click="tabController.removeTodo(todo)">Destroy</button>
      						</li>
      		</ul>
      </section>
      
  </section>
+ <footer>
+     <ul id="filters">
+ 						<li>
+ 							<a ng-click="tabController.onChangeStatus('')">All</a>
+ 						</li>
+ 						<li>
+ 							<a ng-click="tabController.onChangeStatus('active')">Active</a>
+ 						</li>
+ 						<li>
+ 							<a ng-click="tabController.onChangeStatus('completed')">Completed</a>
+ 						</li>
+ 					</ul>
+ </footer>

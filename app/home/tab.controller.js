@@ -1,8 +1,15 @@
 export default class TabController{
     constructor($scope,$stateParams){
          this.todos = [];
-          this.user = $stateParams.user
-         this.userText = '';
+         this.user = $stateParams.user;
+         this.todos.push({
+             value:{
+                 user: "anna",
+                 title: "test",
+                 completed:false
+             },
+             editing: false
+         });
      }
      
      addTodo()
@@ -27,6 +34,12 @@ export default class TabController{
          this.selectedTab = 'all';
      }
      
+     onChangeStatus(status)
+     {
+         this.statusFilter = (status === 'active') ?
+ 				{ value:{completed: false }} : (status === 'completed') ?
+ 				{ value:{completed: true }} : {};
+     }
       editTodo(todo)
      {
          todo.editing = !todo.editing;
@@ -35,7 +48,8 @@ export default class TabController{
      
      doneEditing(todo)
      {
-         todo.editing = !todo.editing;
+          todo.editing = false;
+ +        console.log(todo.editing);
      }
  
      removeTodo(toDo)
