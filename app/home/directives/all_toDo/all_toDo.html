@@ -1,0 +1,9 @@
+<h2>All</h2>
+<h3>Length {{tabController.todos.length}}</h3>
+<h3>Completed {{(tabController.todos | filter : { completed: true }).length}}</h3>
+<h3>InCompleted {{(tabController.todos | filter : { completed: false }).length}}</h3>
+
+<h2>User</h2>
+<h3>Length {{tabController.userAll}}</h3>
+<h3>Completed {{tabController.userCompleted}}</h3>
+<h3>InCompleted {{tabController.userInCompleted}}</h3>

@@ -5,17 +5,19 @@ export default class toDoService
     constructor($firebaseArray)
     {
          this.firebaseArray = $firebaseArray;
-         this.ref = new Firebase("https://angulartododb.firebaseio.com/");
+         this.ref = new Firebase("https://fenos-angular.firebaseio.com/");
          this.items = $firebaseArray(this.ref);
     }
      
     getAll()
     {
+        console.log("items " + this.items.length);
         return this.items;
     }
      
     add(value)
     {
+        console.log(value);
         this.items.$add({
             'user': value.user,
             'title': value.title,
@@ -24,11 +26,13 @@ export default class toDoService
     }
     edit(value)
     {
+        console.log("edit");
         this.items.$save(value);
     }
     
     remove(ref)
     {
+        console.log("remove");
         this.items.$remove(ref);
     }
 };
